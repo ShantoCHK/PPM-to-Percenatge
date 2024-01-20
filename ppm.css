@@ -40,3 +40,12 @@ body {
     margin-top: 20px;
     font-weight: bold;
   }
+
+  /* Added styles for result interpretation */
+  .good-air {
+    color: #4caf50;
+  }
+
+  .bad-air {
+    color: #e74c3c;
+  }

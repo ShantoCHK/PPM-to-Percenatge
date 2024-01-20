@@ -13,12 +13,30 @@
         <button onclick="convertPPM()">Convert</button>
         <div id="result"></div>
       </div>
-      
+    
       <script>
         function convertPPM() {
-          const ppmInput = document.getElementById('ppmInput').value;
+          const ppmInput = parseFloat(document.getElementById('ppmInput').value);
+    
+          if (isNaN(ppmInput)) {
+            document.getElementById('result').innerText = 'Please enter a valid number.';
+            return;
+          }
+    
           const result = (ppmInput / 1000000) * 100;
           document.getElementById('result').innerText = `Result: ${result.toFixed(2)}%`;
+    
+          // Interpret air quality based on the converted percentage
+          const resultContainer = document.getElementById('result');
+          resultContainer.classList.remove('good-air', 'bad-air');
+    
+          if (result <= 25) {
+            resultContainer.classList.add('good-air');
+            resultContainer.innerText += ' (Good for indoor rooms)';
+          } else {
+            resultContainer.classList.add('bad-air');
+            resultContainer.innerText += ' (Considered poor for indoor rooms)';
+          }
         }
       </script>
 </body>
